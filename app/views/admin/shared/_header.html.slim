@@ -1,0 +1,9 @@
+header
+  span.logo-mark
+    | BAUKIS
+  - flash.each do |key, value|
+    = content_tag(:span, value, class: "flash #{key}")
+  - if current_administrator
+    = link_to 'ログアウト', :admin_session, method: :delete
+  - else
+    = link_to 'ログイン', :admin_login

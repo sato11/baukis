@@ -18,10 +18,10 @@ gem 'spring',        group: :development
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'therubyracer',  platforms: :ruby
 gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri', '~> 1.6.1'
 gem 'rails-i18n', '~> 4.0.1'
+gem 'therubyracer',  platforms: :ruby
 
 # template engine
 gem 'html2slim'
@@ -40,9 +40,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara', '~> 2.2.1'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rspec-rails', '~> 3.0.0.beta2'
   gem 'spring-commands-rspec', '~> 1.0.1'
-  gem 'capybara', '~> 2.2.1'
-  gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'database_cleaner', '~> 1.2.0'
 end
