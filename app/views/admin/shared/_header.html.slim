@@ -1,6 +1,5 @@
 header
-  span.logo-mark
-    | BAUKIS
+  = link_to 'BAUKIS', :admin_root, class: 'logo-mark'
   - flash.each do |key, value|
     = content_tag(:span, value, class: "flash #{key}")
   - if current_administrator

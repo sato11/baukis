@@ -1,0 +1,23 @@
+- @title = '職員管理'
+
+h1
+  = @title
+
+.table-wrapper
+  .links
+    = link_to '新規登録', :new_admin_staff_member
+
+  table.listing
+    tr
+      th 氏名
+      th フリガナ
+      th メールアドレス
+      th 開始日
+      th 終了日
+      th 停止フラグ
+      th アクション
+
+      = render partial: 'staff_member', collection: @staff_members, as: :m
+
+  .links
+    = link_to '新規登録', :new_admin_staff_member
