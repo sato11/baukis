@@ -1,4 +1,7 @@
 class Admin::Base < ApplicationController
+  before_action :authenticate_administrator
+  before_action :check_account, :check_timeout
+
   private
 
   def current_administrator
@@ -8,4 +11,33 @@ class Admin::Base < ApplicationController
   end
 
   helper_method :current_administrator
+
+  def authenticate_administrator
+    unless current_administrator
+      flash.alert = '管理者としてログインしてください'
+      redirect_to :admin_login and return
+    end
+  end
+
+  def check_account
+    if current_administrator && current_administrator.suspended?
+      session.delete(:administrator_id)
+      flash.alert = 'アカウントが無効になりました'
+      redirect_to :admin_root
+    end
+  end
+
+  TIMEOUT = 60.minutes
+
+  def check_timeout
+    if current_administrator
+      if TIMEOUT.ago <= session[:last_access_at]
+        session[:last_access_at] = Time.current
+      else
+        session.delete(:administrator_id)
+        flash.alert = 'セッションがタイムアウトしました'
+        redirect_to :admin_login
+      end
+    end
+  end
 end

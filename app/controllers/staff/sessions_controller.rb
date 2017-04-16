@@ -1,4 +1,6 @@
 class Staff::SessionsController < Staff::Base
+  skip_before_action :authenticate_staff_member
+
   def new
     if current_staff_member
       redirect_to :staff_root
@@ -19,6 +21,7 @@ class Staff::SessionsController < Staff::Base
     end
     if Staff::Authenticator.new(staff_member).authenticate(@form.password)
       session[:staff_member_id] = staff_member.id
+      session[:last_access_at] = Time.current
       flash.notice = 'ログインしました'
       redirect_to :staff_root
     else
