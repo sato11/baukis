@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe String do
   describe '#<<' do
-    xexample '文字の追加' do
+    example 'add string' do
       s = 'ABC'
       s << 'D'
       expect(s.size).to eq(4)

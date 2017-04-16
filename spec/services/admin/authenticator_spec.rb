@@ -13,7 +13,7 @@ describe Admin::Authenticator do
     end
 
     it 'returns false if password is not set' do
-      admin = build(:administrator, password: '')
+      admin = build(:administrator, password: nil)
       expect(Admin::Authenticator.new(admin).authenticate(nil)).to be_falsey
     end
 
