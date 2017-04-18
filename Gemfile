@@ -19,6 +19,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'date_validator', '~> 0.7.0'
+gem 'email_validator', '~> 1.4.0'
 gem 'foreigner', '~> 1.6.1'
 gem 'kaminari', '~> 0.15.1'
 gem 'nokogiri', '~> 1.6.1'
