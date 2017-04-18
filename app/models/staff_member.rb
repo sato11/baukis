@@ -1,11 +1,46 @@
 class StaffMember < ActiveRecord::Base
+  include StringNormalizer
+
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
 
   before_validation do
+    self.email = normalize_as_email(email)
     # PostgreSQL doesn't recognize the difference of up/downcase.
     # Having unique restriction as well as index option,
     # email_for_index column takes care of this matter.
     self.email_for_index = email.downcase if email
+    self.family_name = normalize_as_name(family_name)
+    self.given_name = normalize_as_name(given_name)
+    self.family_name_kana = normalize_as_furigana(family_name_kana)
+    self.given_name_kana = normalize_as_furigana(given_name_kana)
+  end
+
+  KATAKANA_REGEXP = %r(\A[\p{katakana}\u{30fc}]+\z)
+  HUMAN_NAME_REGEXP = %r(\A[\p{han}\p{hiragana}\p{katakana}\u{30fc}\p{alpha}]+\z)
+
+  validates :email, presence: true, email: { allow_blank: true }
+  validates :family_name, :given_name, presence: true,
+    format: { with: HUMAN_NAME_REGEXP, allow_blank: true }
+  validates :family_name_kana, :given_name_kana, presence: true,
+    format: { with: KATAKANA_REGEXP, allow_blank: true }
+  validates :start_date, presence: true, date: {
+    after_or_equal_to: Date.new(2000, 1, 1),
+    before: -> (obj) { 1.year.from_now.to_date },
+    allow_blank: true
+  }
+  validates :end_date, date: {
+    after: :start_date,
+    before: -> (obj) { 1.year.from_now.to_date },
+    allow_blank: true
+  }
+
+  validates :email_for_index, uniqueness: { allow_blank: true }
+
+  after_validation do
+    if errors.include?(:email_for_index)
+      errors.add(:email, :taken)
+      errors.add(:email_for_index)
+    end
   end
 
   def password=(raw_password)
