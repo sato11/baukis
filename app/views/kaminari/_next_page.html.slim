@@ -1,0 +1,5 @@
+span.next
+  - unless current_page.last?
+    = link_to t('views.pagination.next').html_safe, url
+  - else
+    = content_tag(:span, t('views.pagination.next'), class: 'disabled')

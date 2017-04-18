@@ -19,6 +19,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'foreigner', '~> 1.6.1'
+gem 'kaminari', '~> 0.15.1'
 gem 'nokogiri', '~> 1.6.1'
 gem 'rails-i18n', '~> 4.0.1'
 gem 'therubyracer',  platforms: :ruby
@@ -37,6 +39,7 @@ group :development, :test do
   gem 'hirb-unicode'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'quiet_assets', '~> 1.0.2'
 end
 
 group :test do

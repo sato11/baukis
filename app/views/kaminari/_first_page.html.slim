@@ -1,0 +1,5 @@
+span.first
+  - unless current_page.first?
+    = link_to t('views.pagination.first').html_safe, url
+  - else
+    = content_tag(:span, t('views.pagination.first'), class: 'disabled')
