@@ -1,4 +1,6 @@
 class StaffMember < ActiveRecord::Base
+  has_many :events, class_name: 'StaffEvent', dependent: :destroy
+
   before_validation do
     # PostgreSQL doesn't recognize the difference of up/downcase.
     # Having unique restriction as well as index option,
@@ -18,5 +20,9 @@ class StaffMember < ActiveRecord::Base
     !suspended? &&
     start_date <= Date.today &&
     (end_date.nil? || Date.today < end_date)
+  end
+
+  def full_name
+    family_name + given_name
   end
 end
