@@ -51,6 +51,12 @@
             label { color: $red; }
             input { background-color: $pink; }
           }
+
+          .error-message {
+            color: $red;
+            font-size: $small;
+            padding: 0 $very_wide;
+          }
         }
       }
     }
