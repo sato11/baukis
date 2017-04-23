@@ -15,7 +15,7 @@
 
       form {
 
-        div {
+        div.input-block {
           padding: $wide;
 
           label {
@@ -29,6 +29,7 @@
             color: $red;
           }
 
+          input { margin-right: $narrow * 2; }
           input[type="checkbox"]+label { display: inline-block; }
           input[type="radio"]+label { display: inline-block; }
 
@@ -50,6 +51,12 @@
             padding: 0;
             label { color: $red; }
             input { background-color: $pink; }
+          }
+
+          .error-message {
+            color: $red;
+            font-size: $small;
+            padding: 0 $very_wide;
           }
         }
       }

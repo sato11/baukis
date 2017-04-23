@@ -1,10 +1,10 @@
+- p = StaffMemberPresenter.new(m, self)
+
 tr
   td
-    => m.family_name
-    =< m.given_name
+    = p.full_name
   td
-    => m.family_name_kana
-    =< m.given_name_kana
+    = p.full_name_kana
   td.email
     = m.email
   td.date
@@ -12,7 +12,7 @@ tr
   td.date
     = m.end_date.try(:strftime, '%Y/%d/%m')
   td.boolean
-    = m.suspended ? raw('&#x2611') : raw('&#x2610')
+    = p.suspended_mark
   td.actions
     => link_to '編集', [:edit, :admin, m]
     => link_to 'Events', [:admin, m, :staff_events]
