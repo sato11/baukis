@@ -1,0 +1,41 @@
+- @title = '顧客管理'
+h1
+  = @title
+
+.table-wrapper
+  .links
+    = link_to '新規登録', :new_staff_customer
+
+  = paginate @customers
+
+  table.listing
+    tr
+      th 氏名
+      th フリガナ
+      th メールアドレス
+      th 生年月日
+      th 性別
+      th アクション
+
+    - @customers.each do |customer|
+      - p = CustomerPresenter.new(customer, self)
+      tr
+        td
+          = p.full_name
+        td
+          = p.full_name_kana
+        td.email
+          = p.email
+        td.date
+          = p.birthday
+        td
+          = p.gender
+        td.actions
+          => link_to '詳細', [:staff, customer]
+          => link_to '編集', [:edit, :staff, customer]
+          => link_to '削除', [:staff, customer], method: :delete, data: { confirm: '本当に削除しますか？' }
+
+  = paginate @customers
+
+  .links
+    = link_to '新規登録', :new_staff_customer

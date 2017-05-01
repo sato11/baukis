@@ -1,0 +1,1 @@
+class WorkAddress < Address; end
