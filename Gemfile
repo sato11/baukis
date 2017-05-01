@@ -7,10 +7,11 @@ gem 'rails', '4.1.0'
 # database
 gem 'mysql2', '0.3.13'
 
-# default gems
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
+gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'rake', '< 11.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'sdoc', '~> 0.4.0',          group: :doc
