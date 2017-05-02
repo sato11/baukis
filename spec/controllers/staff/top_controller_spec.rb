@@ -10,9 +10,9 @@ describe Staff::TopController do
     end
 
     describe '#index' do
-      it 'renders staff/top/index' do
+      it 'renders staff/top/dashboard' do
         get :index
-        expect(response).to render_template 'staff/top/index'
+        expect(response).to render_template 'staff/top/dashboard'
       end
 
       it 'forces logout when suspended flag is set' do
