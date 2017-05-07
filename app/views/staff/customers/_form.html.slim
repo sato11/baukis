@@ -2,9 +2,15 @@
 fieldset#customer-fields
   legend 基本情報
   = render 'customer_fields', f: f
+div
+  = f.check_box :inputs_home_address
+  = f.label :inputs_home_address, '自宅住所を入力する'
 fieldset#home_address_fields
   legend 自宅住所
   = render 'home_address_fields', f: f
+div
+  = f.check_box :inputs_work_address
+  = f.label :inputs_work_address, '勤務先を入力する'
 fieldset#work_address_fields
   legend 勤務先
   = render 'work_address_fields', f: f
